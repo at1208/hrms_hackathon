@@ -5,14 +5,15 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
+const employeeRouter = require("./routers/employee_router");
 
-app.use(
-  cors({
-    origin: "http://localhost:3000"
-  }))
+
+app.use(cors({origin: "http://localhost:3000"}))
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 
+ 
+app.use("/api", employeeRouter);
 
 mongoose
     .connect(process.env.DATABASE, {

@@ -20,6 +20,7 @@ const employeeSchema = mongoose.Schema({
     },
     gender:{
         type:String,
+        enum:["Male", "Femail"],
         required:true
     },
     role:{
@@ -64,12 +65,13 @@ const employeeSchema = mongoose.Schema({
     },
     isActive:{
         type:Boolean,
-        default:true
+        default:false
     },
     email:{
         type:String,
         unique:true,
-        default:null
+        default:null,
+        required:true
     },
     address:{
         type:String,
@@ -78,6 +80,15 @@ const employeeSchema = mongoose.Schema({
     picture:{
         data:Buffer,
         content_type:String
+    },
+    documents:[{
+      data:Buffer,
+      content_type:String
+    }],
+    password:{
+      type:String,
+      min:4,
+      max:100
     }
 },{ timestamps:true });
 
