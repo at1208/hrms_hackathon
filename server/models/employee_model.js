@@ -25,7 +25,7 @@ const employeeSchema = mongoose.Schema({
     role:{
         type:String,
         enum:[
-            'EMPLOYEE', 
+            'EMPLOYEE',
             'ADMIN',
             'SUPERADMIN'
         ],
@@ -41,7 +41,7 @@ const employeeSchema = mongoose.Schema({
         default:'TEMPORARY'
     },
     date_of_joining: {
-        type: Date, 
+        type: Date,
         required : true
     },
     country_code:{
@@ -75,6 +75,49 @@ const employeeSchema = mongoose.Schema({
         type:String,
         default:null
     },
+    hashed_password: {
+        type: String,
+        required: true
+      },
+    salt: String,
+    resetPasswordLink: {
+      data: String,
+      default: ''
+    },
 },{ timestamps:true });
+
+employeeSchema
+    .virtual('password')
+    .set(function(password) {
+        this._password = password;
+        this.salt = this.makeSalt();
+        this.hashed_password = this.encryptPassword(password);
+    })
+    .get(function() {
+        return this._password;
+    });
+
+employeeSchema.methods = {
+    authenticate: function(plainText) {
+        return this.encryptPassword(plainText) === this.hashed_password;
+    },
+
+    encryptPassword: function(password) {
+        if (!password) return '';
+        try {
+            return crypto
+                .createHmac('sha1', this.salt)
+                .update(password)
+                .digest('hex');
+        } catch (err) {
+            return '';
+        }
+    },
+
+    makeSalt: function() {
+        return Math.round(new Date().valueOf() * Math.random()) + '';
+    }
+};
+
 
 module.exports = mongoose.model('Employee', employeeSchema);
