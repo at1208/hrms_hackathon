@@ -75,6 +75,10 @@ const employeeSchema = mongoose.Schema({
         type:String,
         default:null
     },
+    picture:{
+        data:Buffer,
+        content_type:String
+    }
 },{ timestamps:true });
 
 module.exports = mongoose.model('Employee', employeeSchema);
