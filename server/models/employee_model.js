@@ -74,6 +74,10 @@ const employeeSchema = mongoose.Schema({
     address:{
         type:String,
         default:null
+    },
+    picture:{
+        data:Buffer,
+        content_type:String
     }
 },{ timestamps:true });
 
