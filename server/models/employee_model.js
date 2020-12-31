@@ -81,10 +81,10 @@ const employeeSchema = mongoose.Schema({
         data:Buffer,
         content_type:String
     },
-    documents:[{
+    document:{
       data:Buffer,
       content_type:String
-    }],
+    },
     password:{
       type:String,
       min:4,
