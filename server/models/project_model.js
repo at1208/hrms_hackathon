@@ -35,10 +35,10 @@ const projectSchema = mongoose.Schema({
         enum:["Low","Medium","High"],
         default:"Low"
       },
-      uploaded_file:[{
+      uploaded_file:{
         data:Buffer,
         content_type:String
-      }]
+      }
 
 },{ timestamps: true })
 
