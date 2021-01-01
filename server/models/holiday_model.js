@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
 
-const holidaySchema = ({
+const holidaySchema = mongoose.Schema({
     title:{
         type:String,
         required:true
     },
     date:{
-        type:Date, 
+        type:Date,
         required:true,
         unique:true
     },

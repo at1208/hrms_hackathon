@@ -186,7 +186,7 @@ module.exports.accept_onboard_invitation = (req, res) => {
 
              bcrypt.genSalt(10, function(err, salt) {
                  bcrypt.hash(password, salt, function(err, hashedPassword) {
-                   Employee.findByIdAndUpdate({_id: result._id}, { password: hashedPassword }, { new: true })
+                   Employee.findByIdAndUpdate({_id: result._id}, { password: hashedPassword, isActive:true }, { new: true })
                      .exec((err, response) => {
                        if(err){
                          return res.status(400).json({
@@ -337,4 +337,19 @@ module.exports.signin = (req, res) => {
            })
        }
     })
+}
+
+
+module.exports.all_employee = (req, res) => {
+  Employee.find({ isActive: true })
+   .exec((err, result) => {
+     if(err){
+       return res.status(400).json({
+         error:err
+       })
+     }
+     res.status(200).json({
+        employees: result
+     })
+   })
 }

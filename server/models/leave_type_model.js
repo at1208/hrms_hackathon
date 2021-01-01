@@ -1,6 +1,7 @@
 
 const mongoose = require("mongoose");
-const leaveTypeSchema = ({
+
+const leaveTypeSchema = mongoose.Schema({
     leave_type:{
         type:String,
         enum:[
