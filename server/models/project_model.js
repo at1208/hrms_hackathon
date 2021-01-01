@@ -38,6 +38,10 @@ const projectSchema = mongoose.Schema({
       uploaded_file:{
         data:Buffer,
         content_type:String
+      },
+      del_flag:{
+        type:Boolean,
+        default:false
       }
 
 },{ timestamps: true })
