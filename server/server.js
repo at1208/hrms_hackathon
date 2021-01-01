@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const employeeRouter = require("./routers/employee_router");
-
+const projectRouter = require("./routers/project_router");
 
 app.use(cors({origin: "http://localhost:3000"}))
 app.use(morgan('dev'));
@@ -14,6 +14,7 @@ app.use(bodyParser.json());
 
 
 app.use("/api", employeeRouter);
+app.use("/api", projectRouter);
 
 mongoose
     .connect(process.env.DATABASE, {
