@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const {ObjectId} = mongoose.Schema;
 
-const departmentSchema = ({
+const departmentSchema = mongoose.Schema({
     department_name:{
         type:String,
         unique:true,
@@ -10,9 +10,11 @@ const departmentSchema = ({
     department_head:{
         type:ObjectId,
         ref:"Employee",
-        default:null
+    },
+    del_flag:{
+      type:Boolean,
+      default:false
     }
-
-}, {timestamps:true})
+}, { timestamps:true })
 
 module.exports = mongoose.model('Department', departmentSchema);
