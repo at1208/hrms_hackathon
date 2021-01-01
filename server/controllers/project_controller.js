@@ -181,7 +181,7 @@ module.exports.delete_project = (req, res) => {
 }
 
 module.exports.all_project = (req, res) => {
-  Project.find()
+  Project.find({ del_flag: false })
    .exec((err, result) => {
      if(err){
        return res.status(400).json({
