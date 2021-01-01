@@ -290,3 +290,51 @@ module.exports.update_employee = (req, res) => {
     })
   })
 }
+
+
+module.exports.signin = (req, res) => {
+  const { email, password } = req.body;
+  if(!email){
+    return res.status(400).json({
+      error: "Email is required."
+    })
+  }
+  if(!password){
+    return res.status(400).json({
+      error: "Password is required."
+    })
+  }
+  //check if email exist in db. if it exist then take out the employee data
+  Employee.findOne({ email })
+    .exec(async (err, employee) => {
+      if(err){
+        return res.status(400).json({
+          error: err
+        })
+      }
+      if(!employee){
+        return res.status(404).json({
+         error: "Employee with given email does not exit."
+        })
+      }
+      // now compare the given password with db's password
+       let result = await bcrypt.compare(password, employee.password);
+       if(result === false){
+         return res.status(400).json({
+           error: "Invalid email or password"
+         })
+       }else if (result === true) {
+           const token = jwt.sign({ _id: employee._id }, process.env.JWT_SECRET, { expiresIn: '7d' });
+           res.cookie('token', token, { expiresIn: '7d' });
+           const { _id, first_name, email } = employee;
+           return res.json({
+               token,
+               employee: { _id, first_name, email  }
+           });
+       }else {
+         res.status(400).json({
+             error: "Something went wrong."
+           })
+       }
+    })
+}
