@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 const {ObjectId} = mongoose.Schema;
 
-const activitySchema = new mongoose.Schema({
+const jobSchema =  mongoose.Schema({
     posted_by:{
         type:ObjectId,
-        ref:"User",
+        ref:"Employee",
         required:true
     },
 
@@ -23,7 +23,7 @@ const activitySchema = new mongoose.Schema({
     for_department:{
         type:ObjectId,
         ref:"Department",
-        required:true
+        default:null
     },
     apply_by:{
         type:Date,
@@ -65,4 +65,4 @@ const activitySchema = new mongoose.Schema({
     }
 }, {timestamps:true});
 
-module.exports = mongoose.model('Job', activitySchema);
+module.exports = mongoose.model('Job', jobSchema);

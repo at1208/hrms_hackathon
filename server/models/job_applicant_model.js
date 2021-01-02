@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Schema;
 
 const jobApplicantSchema = mongoose.Schema({
-     job_Id:{
+     job_id:{
        type:ObjectId,
        ref:"Job",
        required:true
@@ -19,6 +19,10 @@ const jobApplicantSchema = mongoose.Schema({
      resume:{
        type:Buffer,
        content_type:String
+     },
+     phone_number:{
+      type:String,
+      required:true
      },
      status:[{
        type:String,

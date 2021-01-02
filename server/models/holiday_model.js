@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const holidaySchema = ({
+const holidaySchema = mongoose.Schema({
     title:{
         type:String,
         required:true

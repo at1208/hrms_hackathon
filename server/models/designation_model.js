@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const desginationSchema = ({
+const desginationSchema = mongoose.Schema({
     title:{
         type:String,
         required:true,
@@ -8,6 +8,10 @@ const desginationSchema = ({
     description:{
         type:String,
         default:null
+    },
+    del_flag:{
+        type:Boolean,
+        default:false
     }
 }, {timestamps:true});
 

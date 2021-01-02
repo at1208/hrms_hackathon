@@ -6,7 +6,11 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const employeeRouter = require("./routers/employee_router");
-
+const designationRouter = require("./routers/designation_router");
+const leaveTypeRouter = require("./routers/leave_router");
+const leaveRequestRouter = require("./routers/leave_request_router");
+const JobApplicantRouter = require("./routers/job_apply_router");
+const JobManageRouter  = require("./routers/job_router");
 
 app.use(cors({origin: "http://localhost:3000"}))
 app.use(morgan('dev'));
@@ -14,9 +18,15 @@ app.use(bodyParser.json());
 
  
 app.use("/api", employeeRouter);
+app.use("/api", designationRouter);
+app.use("/api", leaveTypeRouter);
+app.use("/api", leaveRequestRouter);
+app.use("/api", JobApplicantRouter);
+app.use("/api", JobManageRouter);
+
 
 mongoose
-    .connect(process.env.DATABASE, {
+    .connect("mongodb://piyush_lazag:black_window@lazag-shard-00-00.rhhex.mongodb.net:27017,lazag-shard-00-01.rhhex.mongodb.net:27017,lazag-shard-00-02.rhhex.mongodb.net:27017/hrms?ssl=true&replicaSet=atlas-dfi78d-shard-0&authSource=admin&retryWrites=true&w=majority", {
         useNewUrlParser: true,
         useCreateIndex: true,
         useFindAndModify: false,
@@ -24,7 +34,7 @@ mongoose
     })
     .then(() => console.log('Connected to DB'))
     .catch(err => {
-        console.log(err);
+        console.log(err, "mongo_error");
     });
 
 const port = process.env.PORT || 8000;

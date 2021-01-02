@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const {ObjectId} = mongoose.Schema;
 
-const departmentSchema = ({
+const departmentSchema = mongoose.Schema({
     department_name:{
         type:String,
         unique:true,

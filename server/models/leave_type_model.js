@@ -1,6 +1,6 @@
 
 const mongoose = require("mongoose");
-const leaveTypeSchema = ({
+const leaveTypeSchema = mongoose.Schema({
     leave_type:{
         type:String,
         enum:[
@@ -18,7 +18,11 @@ const leaveTypeSchema = ({
     leave_limit:{
         type:Number,
         required:true
+    },
+    del_flag:{
+        type:Boolean,
+        default:false,
     }
 }, {timestamps:true})
 
-module.exports = mongoose.model('Leave', leaveTypeSchema);
+module.exports = mongoose.model('LeaveType', leaveTypeSchema);

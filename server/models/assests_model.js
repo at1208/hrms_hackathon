@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const {ObjectId} = mongoose.Schema;
 
-const assetSchema = ({
+const assetSchema = mongoose.Schema({
     asset_name:{
         type:String,
         default:null
