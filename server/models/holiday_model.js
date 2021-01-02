@@ -14,6 +14,10 @@ const holidaySchema = mongoose.Schema({
         type:String,
         default:null
     },
+    del_flag:{
+      type:Boolean,
+      default:false
+    }
 }, {timestamps:true})
 
 module.exports = mongoose.model('Holiday', holidaySchema);

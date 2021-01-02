@@ -7,12 +7,17 @@ const taskSchema = mongoose.Schema({
         ref:"Project",
         required:true
       },
-      assigned_to:{
+      assignee:{
         type:ObjectId,
         ref:"Employee",
         required:true
       },
-      report_to:{
+    follower:{
+        type:ObjectId,
+        ref:"Employee",
+        required:true
+      },
+      owner:{
         type:ObjectId,
         ref:"Employee",
         required:true
@@ -46,6 +51,10 @@ const taskSchema = mongoose.Schema({
       },
       completed_at:{
         type:Date
+      },
+      del_flag:{
+        type:Boolean,
+        default:false
       }
 },{ timestamps: true })
 
