@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const {ObjectId} = mongoose.Schema;
 
-const activitySchema = new mongoose.Schema({
+const activitySchema =  mongoose.Schema({
     who_performed:{
         type:ObjectId,
         ref:"Employee",

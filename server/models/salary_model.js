@@ -1,7 +1,7 @@
-const mongoose = require("mongoose");
+// const mongoose = require("mongoose");
 
-const salarySchema = new mongoose.Schema({
+// const salarySchema = new mongoose.Schema({
     
 
-})
-module.exports = mongoose.model('Salary', salarySchema);
+// })
+// module.exports = mongoose.model('Salary', salarySchema);

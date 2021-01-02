@@ -19,7 +19,11 @@ const leaveTypeSchema = mongoose.Schema({
     leave_limit:{
         type:Number,
         required:true
+    },
+    del_flag:{
+        type:Boolean,
+        default:false,
     }
 }, {timestamps:true})
 
-module.exports = mongoose.model('Leave', leaveTypeSchema);
+module.exports = mongoose.model('LeaveType', leaveTypeSchema);

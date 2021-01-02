@@ -9,6 +9,10 @@ const desginationSchema = mongoose.Schema({
     description:{
         type:String,
         default:null
+    },
+    del_flag:{
+        type:Boolean,
+        default:false
     }
 }, {timestamps:true});
 
