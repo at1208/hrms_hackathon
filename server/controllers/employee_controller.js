@@ -108,6 +108,7 @@ module.exports.create_employee =  (req, res) => {
                     error: errorHandler(err)
                 });
             }
+
             res.status(200).json({
               message:"New employee successfully created"
             })

@@ -33,7 +33,11 @@ const eventSchema = mongoose.Schema({
       audience:[{
         type:ObjectId,
         ref:"Employee"
-      }]
+      }],
+      del_flag:{
+        type:Boolean,
+        default:false
+      }
 }, {timestamps:true})
 
 module.exports = mongoose.model("Event", eventSchema);
